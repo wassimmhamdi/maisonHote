@@ -1,0 +1,10 @@
+.marginStyle{
+    margin-left:220px;
+}
+.mySlide {display:none;}
+.row{ margin-top:50px}
+.btnStyle{
+	border : 1px solid #f1155a;
+	background-color:#f1155a;
+	border: radius 50%;
+}

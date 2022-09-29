@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+	<body class="enable-fixed-header enable-inview-animations">
+<app-dashboard></app-dashboard>
+
+		<!-- CORE : begin -->
+		<div id="core" class="page-search-results">
+
+			<!-- MAIN WRAPPER : begin -->
+			<div class="main-wrapper-container">
+				<div class="container">
+					<div id="main-wrapper">
+						<div class="row">
+                            
+									<span *ngIf="role=='ROLE_ADMIN'"class="header-add-offer "><a routerLink="/createHouse"class="button"><i class="fa fa-plus"></i> Add House</a></span>
+							<div class="col-md-8 ">
+<!-- PROPERTIES SEARCH BASIC : begin -->
+<div class="properties-search-basic">
+
+
+	<!-- FORM RENT : begin -->
+	<form class="default-form searchFlex" action="index.html" id="properties-search-form-rent">
+
+		<!-- SEARCH INPUT : begin -->
+		<p class="search-input">
+			<input type="text" placeholder="Where do you want to rent?">
+		</p>
+		<p class="form-row">
+			<button class="button submit-btn"><i class="fa fa-search"></i> Search</button>
+		</p>
+
+	</form>
+	<!-- FORM RENT : begin -->
+
+</div>
+<!-- PROPERTIES SEARCH BASIC : end -->
+								<!-- PROPERTIES LISTING : begin -->
+								<div class="properties-listing" *ngIf="exist==true">
+
+									
+									<!-- PROPERTIES LISTING HEADER : end -->
+
+									<!-- PROPERTY LIST : begin -->
+									<div class="imageFlexStyle">
+
+										<!-- PROPERTY  : begin -->
+										<div *ngFor="let house of listHouses; let i=index" >
+											<div class="containerImg">
+												<div>
+													<img [src]="house.images[0]" class="image">
+													
+												</div>
+												<div class="textImg">
+													{{house.nomMaison}}
+												</div>
+												<div class="overlay">
+												  <div class="text">
+														Title : {{house.nomMaison}}
+													</div>
+													<div class="text">
+														Region : {{house.regionMaison}}
+													</div>
+														
+													<div class="text">
+														Price : {{house.prixResMaison}}
+												  </div>
+												  <a class="linkStyle"routerLink="/home_detail/{{house.id}}">
+													See more...
+												  </a>
+												</div>
+	
+											</div>
+										</div>
+										<!-- PROPERTY  : end -->
+
+										
+										</div>
+									<!-- PROPERTY LIST : end -->
+
+									
+
+								</div>
+								<!-- PROPERTIES LISTING : end -->
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- MAIN WRAPPER : end -->
+
+		</div>
+		<!-- CORE : end -->
+
+		
+
+		<!-- FOOTER : begin -->
+		
+
+		
+	</body>

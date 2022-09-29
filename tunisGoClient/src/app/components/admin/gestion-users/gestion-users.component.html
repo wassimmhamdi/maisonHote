@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+<body>
+	
+	
+		<app-dashboard></app-dashboard>
+
+		
+	
+    <div >
+		<button class="btnAddUserModal btn btn-lg btn-outline-primary" (click)="openModal(addUserForm)">add user</button>
+        <!-- end row -->
+        <div class="row">
+            <div class="flexPosition cardStyleMargin" *ngFor="let user of listUsers;">
+                <div class="text-center card-box">
+                    <div class="member-card pt-2 pb-2">
+                        <div class="thumb-lg member-thumb mx-auto"><img src="../../../../assets/dummies/default-user.png" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                        <div class="">
+                            <h4>{{user.nom}} {{user.prenom}}</h4>
+                            <p class="text-muted">{{user.email}} <span>| </span><span class="text-pink">{{user.numTel}}</span></p>
+                        </div>
+                        <div *ngFor="let role of user.roles;">
+							
+							<h4 >{{role.name | json}}</h4>
+						</div>
+                        
+                            
+                                <div class="btnActionUser">
+									<button class="btnUpdateUser btn btn-lg btn-outline-primary" (click)="openModal(updateUserForm); getUserById(user.id)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+									<button class="btnDeleteUser btn btn-lg btn-outline-primary" (click)="deleteUser(user.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+									<button class="btnDeleteUser btn btn-lg btn-outline-primary" routerLink="/detailUser/{{ user.id }}"><i class="fa fa-info" aria-hidden="true"></i></button>
+								</div>
+                            
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end row -->
+
+    </div>
+    <!-- container -->
+
+		
+  <!-- modal add user-->
+  <ng-template #addUserForm>
+	<div class="addUserFormStyle modal-body text-center">
+	  <p>Add new member</p>
+	  <form [formGroup]="addFormUser" (ngSubmit)="addNewUser();addFormUser.reset">
+		<div class=" form-group label-floating is-empty">
+		  <input formControlName="nom" type="text" class="inputStyle form-control" placeholder="Last Name"
+				 [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.nom.errors }" ngDefaultControl [(ngModel)]="addFormUser.nom" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddUser && addUserControls.nom.errors" class="invalid-feedback">
+			<div class="alert alert-danger"*ngIf="addUserControls.nom.errors.required"> Nom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class="inputStyle form-control" formControlName="prenom" placeholder="First Name"
+				 [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.prenom.errors }"ngDefaultControl [(ngModel)]="addFormUser.prenom" [ngModelOptions]="{standalone: true}" />
+		  <div *ngIf="submittedAddUser && addUserControls.prenom.errors" class="invalid-feedback">
+			<div class="alert alert-danger" *ngIf="addUserControls.prenom.errors.required">prenom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Email"
+				 [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.email.errors }" ngDefaultControl [(ngModel)]="addFormUser.email" [ngModelOptions]="{standalone: true}" />
+		  <div *ngIf="submittedAddUser && addUserControls.email.errors" class="invalid-feedback">
+			<div class="alert alert-danger" *ngIf="addUserControls.email.errors.required">Email obligatoire</div>
+		  </div>
+		  <div class="alert alert-danger invalid-feedback"
+                  *ngIf="addUserControls.email.errors &&
+				  addUserControls.email.errors.pattern">* Veuillez insérer
+                  un e-mail valide
+                </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="phone" placeholder="Phone number"
+				 [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.phone.errors }" ngDefaultControl [(ngModel)]="addFormUser.phone" [ngModelOptions]="{standalone: true}" />
+				 <div class="alert alert-danger invalid-feedback" *ngIf="
+				 addUserControls.phone.errors &&
+				 addUserControls.phone.errors.pattern">  le numéro doit contenir seulement des chiffres
+			 </div>
+			 <div class="alert alert-danger invalid-feedback" *ngIf="addFormUser.controls['phone'].touched && addFormUser.controls['phone'].errors">
+			    le numéro doit avoir au minimum 8 chiffres
+			 </div>
+			 <div class="invalid-feedback" *ngIf="submittedAddUser && addUserControls.phone.errors">
+			   <div class="alert alert-danger" *ngIf="addUserControls.phone.errors.required">
+				  numero de telephone obligatoire
+			   </div>
+			 </div>
+		</div>
+  
+		<div class="form-group label-floating is-empty">
+		  <input type="password" class="inputStyle form-control" formControlName="password" placeholder="Password"
+				 [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.password.errors }" ngDefaultControl  [(ngModel)]="addFormUser.password" [ngModelOptions]="{standalone: true}" />
+		  <div class="invalid-feedback" *ngIf="submittedAddUser && addUserControls.password.errors">
+			<div class="alert alert-danger" *ngIf="addUserControls.password.errors.required">password obligatoire</div>
+		  </div>
+		  <div class="alert alert-danger invalid-feedback" *ngIf="
+		  addFormUser.controls['password'].touched &&
+		  addFormUser.controls['password'].errors ">
+                  * le mot de passe doit avoir au minimum 6 caractéres
+                </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+			<select type="text" class="inputStyle form-control" formControlName="role" placeholder="Confirm password"
+				   [ngClass]="{ 'is-invalid': submittedAddUser && addUserControls.role.errors }" [(ngModel)]="addFormUser.role"  [ngModelOptions]="{standalone: true}">
+				   <option  value="admin" default>Role admin</option>
+				   <option  value="user" default>Role user</option>
+				   <option value="leader">Role animateur</option>
+				   <option  value="prop">Role propriaitaire</option>
+			</select> 
+			<div class="invalid-feedback" *ngIf="submittedAddUser && addUserControls.role.errors">
+			  <div class="alert alert-danger" *ngIf="addUserControls.role.errors.required">role obligatoire</div>
+			</div>
+		  </div>
+		<button type="submit" class="btn btnAddUser">Add</button>
+		<button type="button" class="btn btnAnnuler" (click)="resetAddForm()">Cancel</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+
+  <!-- modal update user-->
+  <ng-template #updateUserForm>
+	<div class="addUserFormStyle modal-body text-center">
+	  <p>Update member</p>
+	  <form [formGroup]="updateFormUser" (ngSubmit)="editUser()">
+		<div class=" form-group label-floating is-empty">
+			<input formControlName="nom" type="text" class="inputStyle form-control" placeholder="Last Name"
+				   [ngClass]="{ 'is-invalid': submittedUpdate && updateUserControls.nom.errors }" ngDefaultControl [(ngModel)]="updateFormUser.nom" [ngModelOptions]="{standalone: true}"/>
+			<div *ngIf="submittedUpdate && updateUserControls.nom.errors" class="invalid-feedback">
+			  <div class="alert alert-danger"*ngIf="updateUserControls.nom.errors.required"> Nom obligatoire</div>
+			</div>
+		  </div>
+		  <div class="form-group label-floating is-empty ">
+			<input type="text" class="inputStyle form-control" formControlName="prenom" placeholder="First Name"
+				   [ngClass]="{ 'is-invalid': submittedUpdate && updateUserControls.prenom.errors }"ngDefaultControl [(ngModel)]="updateFormUser.prenom" [ngModelOptions]="{standalone: true}" />
+			<div *ngIf="submittedUpdate && updateUserControls.prenom.errors" class="invalid-feedback">
+			  <div class="alert alert-danger" *ngIf="updateUserControls.prenom.errors.required">prenom obligatoire</div>
+			</div>
+		  </div>
+		  <div class="form-group label-floating is-empty ">
+			<input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Email"
+				   [ngClass]="{ 'is-invalid': submittedUpdate && updateUserControls.email.errors }" ngDefaultControl [(ngModel)]="updateFormUser.email" [ngModelOptions]="{standalone: true}" />
+			<div *ngIf="submittedUpdate && updateUserControls.email.errors" class="invalid-feedback">
+			  <div class="alert alert-danger" *ngIf="updateUserControls.email.errors.required">Email obligatoire</div>
+			</div>
+			<div class="alert alert-danger invalid-feedback"
+					*ngIf="updateFormUser.controls['email'].errors && updateFormUser.controls['email'].errors.email">* Veuillez insérer
+					un e-mail valide
+				  </div>
+		  </div>
+		  <div class="form-group label-floating is-empty">
+			<input type="text" class="inputStyle form-control" formControlName="phone" placeholder="Phone number"
+				   [ngClass]="{ 'is-invalid': submittedUpdate && updateUserControls.phone.errors }" ngDefaultControl [(ngModel)]="updateFormUser.phone" [ngModelOptions]="{standalone: true}" />
+				   <div class="alert alert-danger invalid-feedback" *ngIf="
+				   updateUserControls.phone.errors &&
+				   updateUserControls.phone.errors.pattern">  le numéro doit contenir seulement des chiffres
+			   </div>
+			   <div class="alert alert-danger invalid-feedback" *ngIf="updateFormUser.controls['phone'].touched && updateFormUser.controls['phone'].errors">
+				  le numéro doit avoir au minimum 8 chiffres
+			   </div>
+			   <div class="invalid-feedback" *ngIf="submittedUpdate && updateUserControls.phone.errors">
+				 <div class="alert alert-danger" *ngIf="updateUserControls.phone.errors.required">
+				    numero de telephone obligatoire
+				 </div>
+			   </div>
+		  </div>
+  
+		<button type="submit" class="btn btnAddUser">update</button>
+		<button type="button" class="btn btnAnnuler" (click)=" modalRef.hide()">Cancel</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+</body>
+
+</html>
+
+    

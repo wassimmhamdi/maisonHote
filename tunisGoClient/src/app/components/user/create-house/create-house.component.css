@@ -1,0 +1,22 @@
+.card{
+    margin-top: 10px;
+    border: 3px solid #423338;
+}
+h2{ text-align:center;
+color:#f1155a;}
+.imgAddAct{
+    width: 1000px;
+    height:210px;
+}
+.flexStyle{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom:10px;
+}
+.button{
+    margin-top: 50px;
+}
+.cancelbtn{
+    margin-left: 10px;
+}

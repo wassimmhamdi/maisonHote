@@ -1,0 +1,29 @@
+.header-maison {
+    color: #f1155a;
+}
+.header-maison {
+    height: 84px;
+    line-height: 84px;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+}
+
+.header-maison:hover,
+.header-maison.hover { color: #FFF; border-color: #f1155a; }
+.headerProfilePic{
+    width:90px;
+    height: 60px;
+    margin-top: 9px;
+    
+}
+.btnAddAct{
+    margin-bottom: 20px;
+}
+.aStyle:hover {color:white;}
+
+.profileLinkStyle:hover{
+    color:#f1155a;
+}
+.profileLinkStyle{
+    color:blanchedalmond;
+}

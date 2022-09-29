@@ -1,0 +1,53 @@
+
+
+<div *ngIf="role!='ROLE_USER'" id="wrapper" class="wrapper-content">
+    <div id="sidebar-wrapper">
+        <ul *ngIf="role=='ROLE_ADMIN'" class="sidebar-nav">
+            <li routerLinkActive="is-active">
+                <a routerLink="/profile" >Profile</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/users" >List of users</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/demandeHouse" >List of new houses</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/demandeActivity">List of new activities</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/listMaisons" >List of houses</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/listActivities" >List of activities</a>
+            </li>
+        </ul>
+        <ul *ngIf="role=='ROLE_PROPRITAIRE'" class="sidebar-nav">
+            <li routerLinkActive="is-active">
+                <a routerLink="/profile" >Profil</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/mesMaisons" >My houses</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a href="#" >My conventions</a>
+            </li>
+        </ul>
+        <ul *ngIf="role=='ROLE_LEADEUR'" class="sidebar-nav">
+            <li routerLinkActive="is-active">
+                <a  routerLink="/profile" >Profil</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a routerLink="/activities" >My activities</a>
+            </li>
+            <li routerLinkActive="is-active">
+                <a href="#" >My conventions</a>
+            </li>
+        </ul>
+    </div>
+                <div class="navbar-header">
+                    <button class="btn-menu btn btnTog btn-toggle-menu" type="button">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+</div>

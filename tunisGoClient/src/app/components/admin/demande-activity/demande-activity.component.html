@@ -1,0 +1,85 @@
+
+
+	<body >
+
+        <app-dashboard></app-dashboard>
+                <!-- CORE : begin -->
+                <div id="core" class="page-search-results">
+        
+                    <!-- MAIN WRAPPER : begin -->
+                    <div class="main-wrapper-container">
+                        <div class="container">
+                            <div id="main-wrapper">
+                                <div class="row">
+                                    <div class="marginContent ">
+        
+                                        <!-- PROPERTIES LISTING : begin -->
+                                        <div class="properties-listing">
+        
+                                            
+                                            <!-- PROPERTIES LISTING HEADER : end -->
+        
+                                            <!-- PROPERTY LIST : begin -->
+                                            <div class="imageFlexStyle" *ngIf="exist==true">
+                                                <div *ngIf="listActivitiesNotPublished.length !=0">
+                                                <!-- PROPERTY  : begin -->
+                                                <div *ngFor="let activity of listActivitiesNotPublished; let i=index" >
+                                                    <div class="containerImg">
+                                                        
+                                                        <div >
+                                                            <img [src]="activity.images[0]" class="image">
+                                                            
+                                                        </div>
+                                                        <div class="textImg">
+                                                            {{activity.nomMaison}}
+                                                        </div>
+                                                        <div class="overlay">
+                                                          <div class="text">
+                                                                Title : {{activity.nomMaison}}
+                                                            </div>
+                                                            <div class="text">
+                                                                Region : {{activity.regionMaison}}
+                                                            </div>
+                                                                
+                                                            <div class="text">
+                                                                Price : {{activity.prixResMaison}}
+                                                          </div>
+                                                          <a class="linkStyle"routerLink="/detailActivity/{{activity.id}}">
+                                                            See more...
+                                                          </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- PROPERTY  : end -->
+                                                </div>
+                                                <div *ngIf="listActivitiesNotPublished.length ==0">
+                                                    <h2>No new activities requests</h2>
+                                                </div>
+                                            </div>
+                                            <!-- PROPERTY LIST : end -->
+        
+                                            
+        
+                                        </div>
+                                        <!-- PROPERTIES LISTING : end -->
+        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MAIN WRAPPER : end -->
+        
+                </div>
+                <!-- CORE : end -->
+        
+                
+        
+                <!-- FOOTER : begin -->
+                
+        
+                
+            </body>
+        
+        

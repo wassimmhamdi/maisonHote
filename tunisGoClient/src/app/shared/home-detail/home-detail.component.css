@@ -1,0 +1,108 @@
+.marginStyle{
+    margin-left:44px;
+}
+.mySlide {display:none;}
+.row{ margin-top:50px}
+.btnStyle{
+	border : 1px solid #f1155a;
+	background-color:#f1155a;
+	border: radius 50%;
+}
+.editBtn{
+  margin-right:120px;
+}
+.editBtn:hover{
+    background-color:#f1155a;
+}
+.labelsDiv{
+display: flex;
+flex-direction: row;
+margin-top: 40px;
+
+}
+.labelStyleOk{
+    border : 1px solid #cce6ff;
+    width: 120px;
+    height:30px;
+    margin-left: 10px;
+    color: black;
+    text-align: center;
+    background-color: #cce6ff;
+    border-radius: 50px;
+    
+
+}
+.labelStyleNo{
+    border : 1px solid #cacaca;
+    width: 120px;
+    height:30px;
+    margin-left: 10px;
+    color: black;
+    text-align: center;
+    background-color: #cacaca;
+    border-radius: 50px;
+    
+
+}
+.inputStyle{
+    margin-top:10px;
+    margin-left: 50px;
+    background-color:#241c1f;
+    color: white;
+    height: 35px;
+    width: 400px;
+  }
+.btnAddHouseModal{
+  color: #FFF;
+    background-color: #f1155a;
+    -moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+  .btnAddHouse{
+    color: #FFF;
+    background-color: #f1155a;
+    -moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+  }
+  .btnAnnuler{
+    color: #f1155a;
+    background-color: #cac7c8;
+    -moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    box-shadow: inset 0 -2px 0 rgb(0 0 0 / 20%);
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .addHouseFormStyle{
+    background-color: #423338;
+  }
+ #main-wrapper{
+    width: 73%;
+  }
+  .container{
+    margin-left:330px;
+  }
+  .property-details{
+    width: 750px;
+  }
+  .approuvBtn{
+    margin-right:10px
+  }
+  .approuvBtn:hover{
+    background-color:#f1155a;
+  }

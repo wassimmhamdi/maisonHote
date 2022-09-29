@@ -1,0 +1,83 @@
+
+
+	<body >
+
+<app-dashboard></app-dashboard>
+		<!-- CORE : begin -->
+		<div id="core" class="page-search-results">
+
+			<!-- MAIN WRAPPER : begin -->
+			<div class="main-wrapper-container">
+				<div class="container">
+					<div id="main-wrapper">
+						<div class="row">
+							<div class="marginContent ">
+
+								<!-- PROPERTIES LISTING : begin -->
+								<div class="properties-listing">
+
+									
+									<!-- PROPERTIES LISTING HEADER : end -->
+
+									<!-- PROPERTY LIST : begin -->
+									<div class="imageFlexStyle" *ngIf="exist==true">
+                                        <div *ngIf="listHousesNotPublished.length !=0">
+										<!-- PROPERTY  : begin -->
+										<div *ngFor="let house of listHousesNotPublished; let i=index" >
+											<div class="containerImg">
+												<div>
+													<img [src]="house.images[0]" class="image">
+													
+												</div>
+												<div class="textImg">
+													{{house.nomMaison}}
+												</div>
+												<div class="overlay">
+												  <div class="text">
+														Title : {{house.nomMaison}}
+													</div>
+													<div class="text">
+														Region : {{house.regionMaison}}
+													</div>
+														
+													<div class="text">
+														Price : {{house.prixResMaison}}
+												  </div>
+												  <a class="linkStyle"routerLink="/home_detail/{{house.id}}">
+													See more...
+												  </a>
+												</div>
+											</div>
+										</div>
+										<!-- PROPERTY  : end -->
+                                        </div>
+										<div *ngIf="listHousesNotPublished.length ==0">
+                                            <h2>No new houses requests</h2>
+                                        </div>
+									</div>
+									<!-- PROPERTY LIST : end -->
+
+									
+
+								</div>
+								<!-- PROPERTIES LISTING : end -->
+
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- MAIN WRAPPER : end -->
+
+		</div>
+		<!-- CORE : end -->
+
+		
+
+		<!-- FOOTER : begin -->
+		
+
+		
+	</body>
+

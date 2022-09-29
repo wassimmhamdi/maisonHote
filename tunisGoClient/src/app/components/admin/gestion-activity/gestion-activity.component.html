@@ -1,0 +1,164 @@
+<body>
+	
+	
+	<app-dashboard></app-dashboard>
+	
+<div class="container bootstrap snippets bootdey">
+<button class="btnAddActivityModal btn btn-lg btn-outline-primary" (click)="openModal(showAddActivityModal)">add Activity</button>
+   <div class="row">
+        <div class="col-lg-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>Title</span></th>
+                                <th><span>Description</span></th>
+                                <th><span>Type</span></th>
+                                
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let act of listActs">
+                                    <td>
+                                        
+                                        <span class="user-subhead">{{act.name}}</span>
+                                    </td>
+                                    <td>{{act.description}}</td>
+                                    <td class="text-center">
+                                        <span class="label label-danger">{{act.type}}</span>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <div class="btnActionActivity">
+								<button class="btnUpdateActivity btn btn-lg btn-outline-primary" (click)=" openModal(showUpdateActivityForm)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+								<button class="btnDeleteActivity btn btn-lg btn-outline-primary" (click)="deleteAct(act.id)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                <button class="btnDeleteActivity btn btn-lg btn-outline-primary" ><i class="fa fa-info" aria-hidden="true"></i></button>
+							</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>	
+	
+  <!-- modal add Activity-->
+  <ng-template #showAddActivityModal>
+	<div class="addActivityFormStyle modal-body text-center">
+	  <p>Add new Activity</p>
+	  <form [formGroup]="addFormActivity" (ngSubmit)="addNewActivity()">
+		<div class=" form-group label-floating is-empty">
+		  <input formControlName="name" type="text" class="inputStyle form-control" placeholder="Title"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.name.errors }"ngDefaultControl [(ngModel)]="addFormActivity.name" [ngModelOptions]="{standalone: true}">
+		  <div *ngIf="submittedAddAct && addActivityControls.name.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.name.errors.required"> Titre obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="textArea" class="inputStyle form-control" formControlName="description" placeholder="Description"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.description.errors }" ngDefaultControl [(ngModel)]="addFormActivity.description" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddAct && addActivityControls.description.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.description.errors.required">Description obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class=" inputStyle form-control" formControlName="type" placeholder="Town"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.type.errors }" ngDefaultControl [(ngModel)]="addFormActivity.type" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddAct && addActivityControls.type.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.type.errors.required">type obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="rext" class="inputStyle form-control" formControlName="region" placeholder="region"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.region.errors }" ngDefaultControl [(ngModel)]="addFormActivity.region" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddAct && addActivityControls.region.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.region.errors.required">region obligatoire</div>
+		  </div>
+		</div>
+  
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="prix" placeholder="prix"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.prix.errors }"ngDefaultControl [(ngModel)]="addFormActivity.prix" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddAct && addActivityControls.prix.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.prix.errors.required">prix obligatoire</div>
+			<div *ngIf="addActivityControls.prix.errors.pattern">prix contient que des chiffres</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="file" class="inputStyle form-control" formControlName="images" placeholder="Confirm images"
+				 [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.images.errors }" ngDefaultControl [(ngModel)]="addFormActivity.images"[ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submittedAddAct && addActivityControls.images.errors" class="invalid-feedback">
+			<div *ngIf="addActivityControls.images.errors.required">adresse obligatoire</div>
+		  </div>
+		</div>
+		<button type="submit" class="btn btnAddActivity">Ajouter</button>
+		<button type="button" class="btn btnAnnuler" (click)="resetAddFormAct()">Annuler</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+
+  <!-- modal update Activity-->
+  <ng-template #showUpdateActivityForm>
+	<div class="addActivityFormStyle modal-body text-center">
+	  <p>Update Activity</p>
+	  <form [formGroup]="updateFormActivity" (ngSubmit)="editActivity()">
+		<div class=" form-group label-floating is-empty">
+		  <input formControlName="name" type="text" class="inputStyle form-control" placeholder="Titre"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.name.errors }" ngDefaultControl [(ngModel)]="updateFormActivity.name" [ngModelOptions]="{standalone: true}">
+		  <div *ngIf="submitted && updateActivityControls.name.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.name.errors.required"> Titre obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class="inputStyle form-control" formControlName="description" placeholder="Description"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.description.errors }" ngDefaultControl [(ngModel)]="updateFormActivity.description" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submitted && updateActivityControls.description.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.description.errors.required">Description obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class=" inputStyle form-control" formControlName="type" placeholder="type"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.type.errors }"ngDefaultControl [(ngModel)]="updateFormActivity.type" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submitted && updateActivityControls.type.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.type.errors.required">type obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="number" class="inputStyle form-control" formControlName="region" placeholder="Region"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.region.errors }" ngDefaultControl [(ngModel)]="updateFormActivity.region" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submitted && updateActivityControls.region.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.region.errors.required">region obligatoire</div>
+		  </div>
+		</div>
+  
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="prix" placeholder="prix"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.prix.errors }"ngDefaultControl [(ngModel)]="updateFormActivity.prix" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submitted && updateActivityControls.prix.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.prix.errors.required">prix obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="images" placeholder="Confirm images"
+				 [ngClass]="{ 'is-invalid': submitted && updateActivityControls.images.errors }" ngDefaultControl [(ngModel)]="updateFormActivity.images" [ngModelOptions]="{standalone: true}"/>
+		  <div *ngIf="submitted && updateActivityControls.images.errors" class="invalid-feedback">
+			<div *ngIf="updateActivityControls.images.errors.required">image obligatoire</div>
+		  </div>
+		</div>
+  
+		<button type="submit" class="btn btnAddActivity">Ajouter</button>
+		<button type="button" class="btn btnAnnuler" (click)="resetUpdateFormAct()">Annuler</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+</body>
+
+
+
+    

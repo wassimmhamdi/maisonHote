@@ -1,0 +1,268 @@
+<body>
+	<app-dashboard></app-dashboard>
+		<!-- CORE : begin -->
+		
+		<div id="core" class="page-property-details" *ngIf="exist==true">
+
+			<!-- PAGE HEADER : begin -->
+			<div class="page-header">
+				<div class="container">
+					<div class="page-header-inner clearfix"  >
+						<h1>{{currentHouse.nomMaison}}</h1>
+						<div *ngIf="role=='ROLE_PROPRIATAIRE'">
+							<button class="custom-list breadcrumbs editBtn" (click)="openModal(updateHouseForm); getHouseById()">Edit House</button>
+							<button class="custom-list breadcrumbs editBtn" (click)="deleteHouse()"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+						</div>
+							
+							<div *ngIf="role=='ROLE_ADMIN'">
+								<button class="custom-list breadcrumbs editBtn" (click)="openModal(updateHouseForm); getHouseById()">Edit House</button>
+								<button class="custom-list breadcrumbs editBtn"(click)="deleteHouse()"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></button>
+								<button *ngIf="approuver==false"class="custom-list breadcrumbs approuvBtn" title="Approuve" (click)="approuverHouse()"><i class="fa fa-check fa-lg" aria-hidden="true"></i></button>
+								
+							</div>
+					</div>
+				</div>
+			</div>
+			<!-- PAGE HEADER : end -->
+
+			<!-- MAIN WRAPPER : begin -->
+			<div class="main-wrapper-container" >
+				<div class="container">
+					<div id="main-wrapper">
+						<div class="row">
+							<div class="col-md-8 marginStyle">
+
+								<!-- PROPERTY DETAILS : begin -->
+								<div class="property-details">
+
+									<!-- PROPERTY IMAGES : begin -->
+									<div class="w3-content w3-display-container">
+										<img *ngIf="slide==false"[src]="imgsHouse[0]" style="width:100%; height: 250px;">
+										<div *ngFor="let im of imgsHouse" >
+											<img class="mySlide"[src]="im" style="width:100%; height: 250px;">
+										</div>
+										  <button class="w3-button w3-display-left btnStyle" (click)="plusDivs(-1)">&#10094;</button>
+										  <button class="w3-button w3-display-right btnStyle" (click)="plusDivs(+1)">&#10095;</button>
+										
+									</div>
+										  
+									<!-- PROPERTY IMAGES : end -->
+
+									<div class="row">
+										<div class="col-md-8">
+
+											<!-- PROPERTY DESCRIPTION : begin -->
+											<div class="property-description">
+
+												<!-- DESCRIPTION TEXT : begin -->
+												<div class="description-text">
+													<h4>Description</h4>
+													<p>{{currentHouse.descreptionMaison}}</p>
+													<div class="labelsDiv">
+														<span class="labelStyleOk">Cultural label</span>
+														<span class="labelStyleNo">Hygiene label</span>
+													</div>
+													
+												</div>
+												<!-- DESCRIPTION TEXT : end -->
+
+												<!-- TABS : begin -->
+												<div class="tabs-container">
+													<ul class="tab-title-list">
+														<li class="tab-title active"><a href="#information">Informations</a></li>
+														<li class="tab-title"><a href="#reviews">Reviews</a></li>
+													</ul>
+													<ul class="tab-content-list">
+
+														<!-- INFORMATION TAB : begin -->
+														<li class="tab-content active" id="information">
+
+															<div class="row">
+																<div class="col-lg-6">
+																	<table>
+																		<tr>
+																			<td>State</td>
+																			<td class="textalign-right">{{currentHouse.approuver}}</td>
+																		</tr>
+																		<tr>
+																			<td>Address</td>
+																			<td class="textalign-right">{{currentHouse.adresseMaison}}</td>
+																		</tr>
+																		<tr>
+																			<td>Capacity</td>
+																			<td class="textalign-right">{{capaciteTotale}}</td>
+																		</tr>
+																		<tr>
+																			<td>Number of rooms</td>
+																			<td class="textalign-right">{{currentHouse.nbrChambre}}</td>
+																		</tr>
+																		<tr>
+																			<td>Number of bathrooms</td>
+																			<td class="textalign-right">{{currentHouse.salleDeBain}}</td>
+																		</tr>
+																	</table>
+																</div>
+															</div>
+
+														</li>
+														<!-- INFORMATION TAB : end -->
+
+														<!-- COMMENTS TAB : begin -->
+														<li class="tab-content">
+
+															<div class="comments">
+																<ul class="custom-list comment-list">
+
+																	<!-- COMMENT 1 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Jenny &amp; Tom </strong> - <span class="date">Nov. 14, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 1 : end -->
+
+																	<!-- COMMENT 2 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Tom &amp; Jerry </strong> - <span class="date">Nov. 4, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 2 : end -->
+
+																	<!-- COMMENT 3 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Kate </strong> - <span class="date">Nov. 1, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 3 : end -->
+
+																</ul>
+															</div>
+
+														</li>
+														<!-- COMMENTS TAB : end -->
+
+													</ul>
+												</div>
+												<!-- TABS : end -->
+
+											</div>
+											<!-- PROPERTY DESCRIPTION : end -->
+
+										</div>
+										<div class="col-md-4">
+
+											<!-- PROPERTY PANEL : begin -->
+											<div class="property-panel">
+
+												<!-- OBJECT PRICE : begin -->
+												<div class="panel-item object-price">
+													<h4 class="panel-item-title">Price</h4>
+													<p class="price"><strong>{{currentHouse.prixResMaison}}</strong>DT/ day</p>
+												</div>
+												<!-- OBJECT PRICE : end -->
+
+												<!-- OBJECT RATING : begin -->
+												<div class="panel-item object-rating">
+													<h4 class="panel-item-title">Object Rating</h4>
+													<p class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
+												</div>
+												<!-- OBJECT RATING : end -->
+
+												<!-- BOOK FORM : begin -->
+												<div class="panel-item book-form"*ngIf="role=='ROLE_USER'">
+													
+														<p class="form-row">
+															<button class="button submit-btn"><i class="fa fa-check"></i> Make Reservation</button>
+														</p>
+													
+												</div>
+												<div class="panel-item book-form"*ngIf="role=='ROLE_LEADEUR'">
+													
+													<p class="form-row">
+														<button class="button submit-btn"><i class="fa fa-check"></i> Make convention</button>
+													</p>
+												
+											</div>
+												<!-- BOOK FORM : end -->
+
+											</div>
+											<!-- PROPERTY PANEL : end -->
+
+										</div>
+									</div>
+
+								</div>
+								<!-- PROPERTY DETAILS : end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- MAIN WRAPPER : end -->
+
+		</div>
+	
+		<!-- CORE : end -->
+		<ng-template #updateHouseForm>
+			<div class="addHouseFormStyle modal-body text-center">
+			  <p>Update house</p>
+			  <form [formGroup]="updateFormHouse" (ngSubmit)="editHouse()" *ngIf="exist==true">
+				<div class=" form-group label-floating is-empty">
+					<input formControlName="nomMaison" type="text" class="inputStyle form-control" placeholder="Title"
+						   [ngClass]="{ 'is-invalid': submittedUpdate && updateHouseControls.nomMaison.errors }" ngDefaultControl [(ngModel)]="updateFormHouse.nomMaison" [ngModelOptions]="{standalone: true}"/>
+					<div *ngIf="submittedUpdate && updateHouseControls.nomMaison.errors" class="invalid-feedback">
+					  <div class="alert alert-danger"*ngIf="updateHouseControls.nomMaison.errors.required"> Title obligatoire</div>
+					</div>
+				  </div>
+				  <div class="form-group label-floating is-empty ">
+					<input type="text" class="inputStyle form-control" formControlName="regionMaison" placeholder="Region"
+						   [ngClass]="{ 'is-invalid': submittedUpdate && updateHouseControls.regionMaison.errors }"ngDefaultControl [(ngModel)]="updateFormHouse.regionMaison" [ngModelOptions]="{standalone: true}" />
+					<div *ngIf="submittedUpdate && updateHouseControls.regionMaison.errors" class="invalid-feedback">
+					  <div class="alert alert-danger" *ngIf="updateHouseControls.regionMaison.errors.required">Region obligatoire</div>
+					</div>
+				  </div>
+				  <div class="form-group label-floating is-empty ">
+					<input type="text" class="inputStyle form-control" formControlName="adresseMaison" placeholder="Address"
+						   [ngClass]="{ 'is-invalid': submittedUpdate && updateHouseControls.adresseMaison.errors }"ngDefaultControl [(ngModel)]="updateFormHouse.adresseMaison" [ngModelOptions]="{standalone: true}" />
+					<div *ngIf="submittedUpdate && updateHouseControls.adresseMaison.errors" class="invalid-feedback">
+					  <div class="alert alert-danger" *ngIf="updateHouseControls.adresseMaison.errors.required">Adresse obligatoire</div>
+					</div>
+				  </div>
+				  <div class="form-group label-floating is-empty ">
+					<input type="text" class="inputStyle form-control" formControlName="descreptionMaison" placeholder="Description"
+						   [ngClass]="{ 'is-invalid': submittedUpdate && updateHouseControls.descreptionMaison.errors }"ngDefaultControl [(ngModel)]="updateFormHouse.descreptionMaison" [ngModelOptions]="{standalone: true}" />
+					<div *ngIf="submittedUpdate && updateHouseControls.descreptionMaison.errors" class="invalid-feedback">
+					  <div class="alert alert-danger" *ngIf="updateHouseControls.descreptionMaison.errors.required">Description obligatoire</div>
+					</div>
+				  </div>
+				  <div class="form-group label-floating is-empty">
+					<input type="text" class="inputStyle form-control" formControlName="prixResMaison" placeholder="Price"
+						   [ngClass]="{ 'is-invalid': submittedUpdate && updateHouseControls.prixResMaison.errors }" ngDefaultControl [(ngModel)]="updateFormHouse.prixResMaison" [ngModelOptions]="{standalone: true}" />
+						   <div class="alert alert-danger invalid-feedback" *ngIf="
+						   updateHouseControls.prixResMaison.errors &&
+						   updateHouseControls.prixResMaison.errors.pattern">  le numéro doit contenir seulement des chiffres
+					   </div>
+					   <div class="invalid-feedback" *ngIf="submittedUpdate && updateHouseControls.prixResMaison.errors">
+						 <div class="alert alert-danger" *ngIf="updateHouseControls.prixResMaison.errors.required">
+							prix obligatoire
+						 </div>
+					   </div>
+				  </div>
+		  
+				<button type="submit" class="btn btnAddHouse">Update</button>
+				<button type="button" class="btn btnAnnuler" (click)=" resetUpdateForm()">Cancel</button>
+		  
+			  </form>
+			</div>
+		  </ng-template>
+</body>		
+	

@@ -1,0 +1,76 @@
+<body>
+<app-dashboard></app-dashboard>
+<div class="container">
+
+    <div class=" col-sm-offset-2">
+        <div class="panel panel-white profile-widget">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="image-container bg2">  
+                        <img src="../../../../assets/dummies/detailUser.png" class="avatar" alt="avatar"> 
+                    </div>
+                </div>
+                <div class="col-sm-12" *ngIf="exist==true">
+                    <div class="details border-bottom-purple">
+                        <h4 class="textColorPink">{{currentUser.nom}} {{currentUser.prenom}} <i class="fa fa-sheild"></i></h4>
+                        <div>{{currentUser.email}}</div>
+                        <div>{{currentUser.numTel}}</div>
+                         
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <div class="row">
+            
+            <div class="col-sm-6">
+                
+                <div class="panel  border-bottom-purple border-top-purple">
+                
+                    <div class="panel-body"> 
+                        <div class="body-section">
+                            <h5 class="section-heading">First Name</h5>
+                            <p class="section-content">{{currentUser.prenom}}</p>
+                        </div>
+                        <div class="body-section">
+                            <h5 class="section-heading">Phone Number</h5>
+                            <p class="section-content">{{currentUser.numTel}}</p>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="col-sm-6">
+                 
+                <div class="panel  border-bottom-purple border-top-purple">
+                   
+                    <div class="panel-body"> 
+                        <div class="body-section">
+                            <h5 class="section-heading">Laset Name</h5>
+                            <p class="section-content">{{currentUser.nom}}</p>
+                        </div>
+                        <div class="body-section">
+                            <h5 class="section-heading">E-mail</h5>
+                            <p class="section-content">{{currentUser.email}}</p>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+                 
+                
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+</div>
+</body>

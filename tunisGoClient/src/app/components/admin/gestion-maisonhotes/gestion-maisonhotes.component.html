@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Table V02</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+<body>
+	
+	
+		<app-dashboard></app-dashboard>
+		<div class="container-table100">
+			<div class="wrap-table100">
+				
+				<button class="btnAddHouseModal btn btn-lg btn-outline-primary" (click)="openModal(showAddHouseModal)">add House</button>
+                    
+                
+				<div class="limiter">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								Title
+							</div>
+							<div class="cell">
+								Description
+							</div>
+							<div class="cell">
+								Town
+							</div>
+						</div>
+
+						<div class="row rowContent">
+							<div class="cell" data-title="Title">
+								aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+							</div>
+							<div class="cell" data-title="Description">
+								aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+							</div>
+							<div class="cell" data-title="town">
+								Manouba
+							</div>
+							<div class="btnActionHouse">
+								<button class="btnUpdateHouse btn btn-lg btn-outline-primary" (click)=" openModal(showUpdateHouseForm)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+								<button class="btnDeleteHouse btn btn-lg btn-outline-primary" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+								<button class="btnDeleteHouse btn btn-lg btn-outline-primary" ><i class="fa fa-info" aria-hidden="true"></i></button>
+							</div>
+							</div>
+
+						
+					</div>
+			</div>
+		</div>
+	</div>
+  <!-- modal add House-->
+  <ng-template #showAddHouseModal>
+	<div class="addHouseFormStyle modal-body text-center">
+	  <p>Add new House</p>
+	  <form [formGroup]="addFormHouse">
+		<div class=" form-group label-floating is-empty">
+		  <input formControlName="nom" type="text" class="inputStyle form-control" placeholder="Title"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.nom.errors }">
+		  <div *ngIf="submitted && addHouseControls.nom.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.nom.errors.required"> Nom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class="inputStyle form-control" formControlName="prenom" placeholder="Description"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.prenom.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.prenom.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.prenom.errors.required">prenom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Town"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.email.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.email.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.email.errors.required">Email obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="number" class="inputStyle form-control" formControlName="num_tel" placeholder="Phone number"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.num_tel.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.num_tel.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.num_tel.errors.required">num_tel obligatoire</div>
+		  </div>
+		</div>
+  
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="password" placeholder="Password"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.password.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.password.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.password.errors.required">password obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="password" placeholder="Confirm password"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.password.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.password.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.password.errors.required">adresse obligatoire</div>
+		  </div>
+		</div>
+		<button type="submit" class="btn btnAddHouse">Ajouter</button>
+		<button type="button" class="btn btnAnnuler" (click)=" modalRef.hide()">Annuler</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+
+  <!-- modal update House-->
+  <ng-template #showUpdateHouseForm>
+	<div class="addHouseFormStyle modal-body text-center">
+	  <p>Update House</p>
+	  <form [formGroup]="updateFormHouse">
+		<div class=" form-group label-floating is-empty">
+		  <input formControlName="nom" type="text" class="inputStyle form-control" placeholder="Last Name"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.nom.errors }">
+		  <div *ngIf="submitted && addHouseControls.nom.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.nom.errors.required"> Nom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class="inputStyle form-control" formControlName="prenom" placeholder="First Name"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.prenom.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.prenom.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.prenom.errors.required">prenom obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty ">
+		  <input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Email"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.email.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.email.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.email.errors.required">Email obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="number" class="inputStyle form-control" formControlName="num_tel" placeholder="Phone number"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.num_tel.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.num_tel.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.num_tel.errors.required">num_tel obligatoire</div>
+		  </div>
+		</div>
+  
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="password" placeholder="Password"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.password.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.password.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.password.errors.required">password obligatoire</div>
+		  </div>
+		</div>
+		<div class="form-group label-floating is-empty">
+		  <input type="text" class="inputStyle form-control" formControlName="password" placeholder="Confirm password"
+				 [ngClass]="{ 'is-invalid': submitted && addHouseControls.password.errors }"/>
+		  <div *ngIf="submitted && addHouseControls.password.errors" class="invalid-feedback">
+			<div *ngIf="addHouseControls.password.errors.required">adresse obligatoire</div>
+		  </div>
+		</div>
+  
+		<button type="submit" class="btn btnAddHouse">Ajouter</button>
+		<button type="button" class="btn btnAnnuler" (click)=" modalRef.hide()">Annuler</button>
+  
+	  </form>
+	</div>
+  </ng-template>
+</body>
+
+</html>
+
+    

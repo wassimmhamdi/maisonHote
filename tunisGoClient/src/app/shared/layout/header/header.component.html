@@ -1,0 +1,290 @@
+		<!-- HEADER : begin -->
+		<header id="header">
+			<div class="container">
+				<div class="header-inner clearfix">
+
+					<!-- HEADER BRANDING : begin -->
+					<div class="header-branding">
+						<a routerLink=""><img src="assets/dummies/logoHostun.png" alt="Casa"></a>
+					</div>
+					<!-- HEADER BRANDING : end -->
+
+					<!-- HEADER NAVBAR : begin -->
+					<div class="header-navbar">
+
+						<!-- HEADER SEARCH : begin -->
+						<div class="header-search">
+							<form class="default-form" action="index.html">
+
+								<!-- SEARCH INPUT : begin -->
+								<div class="search-input">
+									<i class="ico fa fa-search"></i>
+									<i class="close fa fa-times"></i>
+									<input type="text">
+								</div>
+								<!-- SEARCH INPUT : end -->
+
+								<!-- SEARCH ADVANCED : begin -->
+								<div class="header-form search-advanced">
+									<div class="search-advanced-inner">
+
+										<!-- ARRIVAL DATE, DEPARTURE DATE : begin -->
+										<p class="form-row clearfix">
+											<span class="calendar-input input-left" title="Arrival">
+												<input type="text" name="arrival" placeholder="Arrival" data-dateformat="m/d/y">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<span class="calendar-input input-right" title="Departure">
+												<input type="text" name="departure" placeholder="Departure" data-dateformat="m/d/y">
+												<i class="fa fa-calendar"></i>
+											</span>
+										</p>
+										<!-- ARRIVAL DATE, DEPARTURE DATE : end -->
+
+										<!-- NUMBER OF ADULTS AN CHILDREN : begin -->
+										<p class="form-row clearfix">
+											<span class="select-box input-left" title="Adults">
+												<select name="adults" data-placeholder="Adults">
+													<option>Adults</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+											</span>
+											<span class="select-box input-right" title="Children">
+												<select name="children" data-placeholder="Children">
+													<option>Children</option>
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>
+											</span>
+										</p>
+										<!-- NUMBER OF ADULTS AN CHILDREN : end -->
+
+										<!-- TYPE : begin -->
+										<p class="form-row textalign-center radio-inputs">
+											<!-- <span class="radio-input">
+												<input id="type_swap" type="radio" name="type" value="swap" checked="checked">
+												<label for="type_swap">Swap</label>
+											</span> -->
+										<!-- 	<span class="radio-input">
+												<input id="type_book" type="radio" name="type" value="book">
+												<label for="type_book">Book</label>
+											</span> -->
+											<!-- <span class="radio-input">
+												<input id="type_rent" type="radio" name="type" value="rent">
+												<label for="type_rent">Rent</label>
+											</span> -->
+										</p>
+										<!-- TYPE : end -->
+
+										<hr class="form-divider">
+										<p class="form-row">
+											<button class="submit-btn button"><i class="fa fa-search"></i> Search</button>
+										</p>
+
+									</div>
+								</div>
+								<!-- SEARCH ADVANCED : end -->
+
+							</form>
+						</div>
+						<!-- HEADER SEARCH : end -->
+
+						<!-- HEADER MENU : begin -->
+						
+						<button class="header-btn"><a class="aStyle"routerLink="">Home</a> </button>
+						<button class="header-btn" ><a class="aStyle" routerLink="/listMaisons">Guest houses</a></button>
+						<button class="header-btn"><a class="aStyle" routerLink="/contact">Contact-us</a></button>
+
+						<!-- HEADER TOOLS : begin pour un visiteur  --> 
+						<div *ngIf="roles == null" class="header-tools">
+
+
+							<!-- HEADER REGISTER : begin -->
+							<div class="header-register">
+								<button class="register-toggle header-btn"><i class="fa fa-plus-circle"></i> Register</button>
+								<div class="header-form">
+									<form action="index.html" class="default-form"
+									[formGroup]="registerFormUser"
+									class="default-form"
+      								(ngSubmit)=" onRegister()">
+									  <div class=" form-group label-floating is-empty">
+										<input formControlName="nom" type="text" class="inputStyle form-control" placeholder="Last Name"
+											   [ngClass]="{ 'is-invalid': submitted && registerUserControls.nom.errors }" ngDefaultControl [(ngModel)]="registerFormUser.nom" [ngModelOptions]="{standalone: true}"/>
+										<div *ngIf="submitted && registerUserControls.nom.errors" class="invalid-feedback">
+										  <div class="alert alert-danger"*ngIf="registerUserControls.nom.errors.required"> Nom obligatoire</div>
+										</div>
+									  </div>
+									  <div class="form-group label-floating is-empty ">
+										<input type="text" class="inputStyle form-control" formControlName="prenom" placeholder="First Name"
+											   [ngClass]="{ 'is-invalid': submitted && registerUserControls.prenom.errors }"ngDefaultControl [(ngModel)]="registerFormUser.prenom" [ngModelOptions]="{standalone: true}" />
+										<div *ngIf="submitted && registerUserControls.prenom.errors" class="invalid-feedback">
+										  <div class="alert alert-danger" *ngIf="registerUserControls.prenom.errors.required">prenom obligatoire</div>
+										</div>
+									  </div>
+									  <div class="form-group label-floating is-empty ">
+										<input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Email"
+											   [ngClass]="{ 'is-invalid': submitted && registerUserControls.email.errors }" ngDefaultControl [(ngModel)]="registerFormUser.email" [ngModelOptions]="{standalone: true}" />
+										<div *ngIf="submitted && registerUserControls.email.errors" class="invalid-feedback">
+										  <div class="alert alert-danger" *ngIf="registerUserControls.email.errors.required">Email obligatoire</div>
+										</div>
+										<div class="alert alert-danger invalid-feedback"
+												*ngIf="registerFormUser.controls['email'].errors && registerFormUser.controls['email'].errors.email">* Veuillez insérer
+												un e-mail valide
+											  </div>
+									  </div>
+									  <div class="form-group label-floating is-empty">
+										<input type="text" class="inputStyle form-control" formControlName="phone" placeholder="Phone number"
+											   [ngClass]="{ 'is-invalid': submitted && registerUserControls.phone.errors }" ngDefaultControl [(ngModel)]="registerFormUser.phone" [ngModelOptions]="{standalone: true}" />
+											   <div class="alert alert-danger invalid-feedback" *ngIf="
+											   registerUserControls.phone.errors &&
+											   registerUserControls.phone.errors.pattern">  le numéro doit contenir seulement des chiffres
+										   </div>
+										   <div class="alert alert-danger invalid-feedback" *ngIf="registerFormUser.controls['phone'].touched && registerFormUser.controls['phone'].errors">
+											  le numéro doit avoir au minimum 8 chiffres
+										   </div>
+										   <div class="invalid-feedback" *ngIf="submitted && registerUserControls.phone.errors">
+											 <div class="alert alert-danger" *ngIf="registerUserControls.phone.errors.required">
+											   numero de telephone obligatoire
+											 </div>
+										   </div>
+									  </div>
+								
+									  <div class="form-group label-floating is-empty">
+										<input type="password" class="inputStyle form-control" formControlName="password" placeholder="Password"
+											   [ngClass]="{ 'is-invalid': submitted && registerUserControls.password.errors }" ngDefaultControl  [(ngModel)]="registerFormUser.password" [ngModelOptions]="{standalone: true}" />
+										<div class="invalid-feedback" *ngIf="submitted && registerUserControls.password.errors">
+										  <div class="alert alert-danger" *ngIf="registerUserControls.password.errors.required">password obligatoire</div>
+										</div>
+										<div class="alert alert-danger invalid-feedback" *ngIf="
+										registerFormUser.controls['password'].touched &&
+										registerFormUser.controls['password'].errors ">
+												le mot de passe doit avoir au minimum 8 caractéres
+											  </div>
+									  </div>
+										<p class="form-row">
+											<button type = "submit"class="submit-btn button"><i class="fa fa-plus-circle"></i> Register</button>
+										</p>
+										<div class="alert alert-warning" *ngIf="submitted && isSignUpFailed">
+											Signup failed!<br />{{ errorMessage }}
+										</div>
+									</form>
+
+									<div class="alert alert-success" *ngIf="isSuccessful">
+										Your registration is successful!
+									  </div>
+								</div>
+							</div>
+							<!-- HEADER REGISTER : end -->
+
+							<!-- HEADER LOGIN : begin -->
+							<div  class="header-login">
+								<button class="login-toggle header-btn"><i class="fa fa-power-off"></i> Login</button>
+								<div class="header-form">
+									<form action="index.html" class="default-form"
+									[formGroup]="loginFormUser"
+      								name="loginForm"
+      								(ngSubmit)=" onLogin()"
+									  *ngIf="!isLoggedIn">
+										
+									  <div class="form-group label-floating is-empty ">
+										<input type="text" class=" inputStyle form-control" formControlName="email" placeholder="Email"
+											   [ngClass]="{ 'is-invalid': submittedLogin && loginUserControls.email.errors }" ngDefaultControl [(ngModel)]="loginFormUser.email" [ngModelOptions]="{standalone: true}" />
+										<div *ngIf="submittedLogin && loginUserControls.email.errors" class="invalid-feedback">
+										  <div class="alert alert-danger" *ngIf="loginUserControls.email.errors.required">Email obligatoire</div>
+										</div>
+										<div class="alert alert-danger invalid-feedback"
+												*ngIf="loginFormUser.controls['email'].errors && loginFormUser.controls['email'].errors.email">* Veuillez insérer
+												un e-mail valide
+											  </div>
+									  </div>
+									  <div class="form-group label-floating is-empty">
+										<input type="password" class="inputStyle form-control" formControlName="password" placeholder="password"
+											 name="password"  [ngClass]="{ 'is-invalid': submittedLogin && loginUserControls.password.errors }" ngDefaultControl [(ngModel)]="loginFormUser.password" [ngModelOptions]="{standalone: true}" />
+	
+										   <div class="alert alert-danger invalid-feedback" *ngIf="loginFormUser.controls['password'].touched && loginFormUser.controls['password'].errors">
+											  le mot de passe doit avoir au minimum 8 chiffres
+										   </div>
+										   <div class="invalid-feedback" *ngIf="submittedLogin && loginUserControls.password.errors">
+											 <div class="alert alert-danger" *ngIf="loginUserControls.password.errors.required">
+											   mot de passe  obligatoire
+											 </div>
+										   </div>
+									  </div>
+										<p class="form-row">
+											<button type="submit" class="submit-btn button"><i class="fa fa-power-off"></i> Login</button>
+										</p>
+										<p class="form-row forgot-password">
+											<a routerLink="/passwordForotten">Forgot Password?</a>
+										</p>
+
+										<div
+										class="alert alert-danger"
+										role="alert"
+										*ngIf="submitted && isLoginFailed"
+									  >
+										Login failed: {{ errorMessage }}
+									  </div>
+									</form>
+									<div class="alert alert-success" *ngIf="isLoggedIn">
+										Logged in as {{ roles }}.
+									</div>
+								</div>
+							</div>
+							<!-- HEADER LOGIN : end -->
+
+							
+
+						</div>
+						<!-- HEADER TOOLS : end -->
+
+						<!-- PROFILE PICTURE : begin pour un utilisateur --> 
+						<div *ngIf="roles != null" class="header-tools">
+
+
+							
+							<span *ngIf="roles=='ROLE_LEADEUR'"class="header-add-offer btnAddAct"><a routerLink="/createActivity"class="button"><i class="fa fa-plus"></i> Add Activity</a></span>
+							<span *ngIf="roles=='ROLE_PROPRITAIRE'"class="header-add-offer btnAddAct"><a routerLink="/createHouse"class="button"><i class="fa fa-plus"></i> Add House</a></span>
+							
+
+							<div class="header-register">
+								<img src="../../../../assets/dummies/default-user.png" class="headerProfilePic register-toggle header-btn"/>
+								<div class="header-form">
+									<form action="index.html" class="default-form"
+									>
+									  <div *ngIf="roles=='ROLE_USER'" class=" form-group label-floating is-empty">
+										<a  routerLink="/profile" class="profileLinkStyle">Profile</a>
+									  </div>
+									  <div *ngIf="roles!='ROLE_USER'"class=" form-group label-floating is-empty">
+										<a  routerLink="/profile" class="profileLinkStyle">My Dashboard</a>
+									  </div>
+									  <div class=" form-group label-floating is-empty">
+										<button class="profileLinkStyle"(click)="logout()"><a >Déconnecter</a></button>
+									  </div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<!-- HEADER TOOLS : end -->
+
+					</div>
+					<!-- HEADER NAVBAR : end -->
+
+					<!-- SEARCH TOGGLE : begin -->
+					<button class="search-toggle button"><i class="fa fa-search"></i></button>
+					<!-- SEARCH TOGGLE : end -->
+
+					<!-- NAVBAR TOGGLE : begin -->
+					<button class="navbar-toggle button"><i class="fa fa-bars"></i></button>
+					<!-- NAVBAR TOGGLE : end -->
+
+				</div>
+			</div>
+		</header>
+		<!-- HEADER : end -->

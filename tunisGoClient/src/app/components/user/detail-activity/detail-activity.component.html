@@ -1,0 +1,184 @@
+
+		<!-- CORE : begin -->
+		<div id="core" class="page-property-details">
+
+			<!-- PAGE HEADER : begin -->
+			<div class="page-header">
+				<div class="container">
+					<div class="page-header-inner clearfix">
+						<h1>{{currentAct.name}}</h1>
+						<ul class="custom-list breadcrumbs">
+							<li><a href="index.html">Home</a> / </li>
+							
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- PAGE HEADER : end -->
+
+			<!-- MAIN WRAPPER : begin -->
+			<div class="main-wrapper-container">
+				<div class="container">
+					<div id="main-wrapper">
+						<div class="row">
+							<div class="col-md-8 marginStyle">
+
+								<!-- PROPERTY DETAILS : begin -->
+								<div class="property-details">
+
+									<!-- PROPERTY IMAGES : begin -->
+									<div class="w3-content w3-display-container">
+										<img *ngIf="slide==false"[src]="imgsAct[0]" style="width:100%; height: 250px;">
+										<div *ngFor="let im of imgsAct" >
+											<img class="mySlide"[src]="im" style="width:100%; height: 250px;">
+										</div>
+										  <button class="w3-button w3-display-left btnStyle" (click)="plusDivs(-1)">&#10094;</button>
+										  <button class="w3-button w3-display-right btnStyle" (click)="plusDivs(+1)">&#10095;</button>
+										
+									</div>
+										  
+									<!-- PROPERTY IMAGES : end -->
+
+									<div class="row">
+										<div class="col-md-8">
+
+											<!-- PROPERTY DESCRIPTION : begin -->
+											<div class="property-description">
+
+												<!-- DESCRIPTION TEXT : begin -->
+												<div class="description-text">
+													<h4>Description</h4>
+													<p>{{currentAct.description}}</p>
+												</div>
+												<!-- DESCRIPTION TEXT : end -->
+
+												<!-- TABS : begin -->
+												<div class="tabs-container">
+													<ul class="tab-title-list">
+														<li class="tab-title active"><a href="#information">Information</a></li>
+														<li class="tab-title"><a href="#reviews">Reviews</a></li>
+													</ul>
+													<ul class="tab-content-list">
+
+														<!-- INFORMATION TAB : begin -->
+														<li class="tab-content active" id="information">
+
+															<div class="row">
+																<div class="col-lg-6">
+																	<table>
+																		<tr>
+																			<td>Type</td>
+																			<td class="textalign-right">{{currentAct.type}}</td>
+																		</tr>
+																		<tr>
+																			<td>Region</td>
+																			<td class="textalign-right">{{currentAct.region}}</td>
+																		</tr>
+																		
+																	</table>
+																</div>
+															</div>
+
+														</li>
+														<!-- INFORMATION TAB : end -->
+
+														<!-- COMMENTS TAB : begin -->
+														<li class="tab-content">
+
+															<div class="comments">
+																<ul class="custom-list comment-list">
+
+																	<!-- COMMENT 1 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Jenny &amp; Tom </strong> - <span class="date">Nov. 14, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 1 : end -->
+
+																	<!-- COMMENT 2 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Tom &amp; Jerry </strong> - <span class="date">Nov. 4, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 2 : end -->
+
+																	<!-- COMMENT 3 : begin -->
+																	<li class="comment">
+																		<div class="author"><strong>Kate </strong> - <span class="date">Nov. 1, 2013</span></div>
+																		<div class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
+																		<div class="review">
+																			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Proin nibh augue, suscipit a, scelerisque sed, lacinia in, mi.</p>
+																		</div>
+																	</li>
+																	<!-- COMMENT 3 : end -->
+
+																</ul>
+															</div>
+
+														</li>
+														<!-- COMMENTS TAB : end -->
+
+													</ul>
+												</div>
+												<!-- TABS : end -->
+
+											</div>
+											<!-- PROPERTY DESCRIPTION : end -->
+
+										</div>
+										<div class="col-md-4">
+
+											<!-- PROPERTY PANEL : begin -->
+											<div class="property-panel">
+
+												<!-- OBJECT PRICE : begin -->
+												<div class="panel-item object-price">
+													<h4 class="panel-item-title">Price</h4>
+													<p class="price"><strong>{{currentAct.prix}}</strong>DT/ jour</p>
+												</div>
+												<!-- OBJECT PRICE : end -->
+
+												<!-- OBJECT RATING : begin -->
+												<div class="panel-item object-rating">
+													<h4 class="panel-item-title">Object Rating</h4>
+													<p class="rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
+												</div>
+												<!-- OBJECT RATING : end -->
+
+												<!-- BOOK FORM : begin -->
+												<div class="panel-item book-form">
+													
+														<p class="form-row">
+															<button class="button submit-btn"><i class="fa fa-check"></i> Make Reservation</button>
+														</p>
+													
+												</div>
+												<!-- BOOK FORM : end -->
+
+											</div>
+											<!-- PROPERTY PANEL : end -->
+
+										</div>
+									</div>
+
+								</div>
+								<!-- PROPERTY DETAILS : end -->
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- MAIN WRAPPER : end -->
+
+		</div>
+		<!-- CORE : end -->
+
+		
+	

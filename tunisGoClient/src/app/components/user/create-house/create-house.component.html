@@ -1,0 +1,163 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+<div class="row flex-lg-nowrap">
+  
+
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                    <h2 *ngIf="next==false">Add new house</h2>
+                  <form class="form" [formGroup]="addFormHouse" >
+                    <div class="row" *ngIf="next==false">
+                        
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text"formControlName="nomMaison" name="nomMaison" placeholder="Title" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.nomMaison.errors }"ngDefaultControl [(ngModel)]="addFormHouse.nomMaison" [ngModelOptions]="{standalone: true}">
+                              <div *ngIf="submittedAddHouse && addHouseControls.nomMaison.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.nomMaison.errors.required"> Title required</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text"formControlName="regionMaison" placeholder="region" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.regionMaison.errors }" ngDefaultControl [(ngModel)]="addFormHouse.regionMaison" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.regionMaison.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.regionMaison.errors.required">Region required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="prixResMaison" placeholder="Reservation price" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.prixResMaison.errors }"ngDefaultControl [(ngModel)]="addFormHouse.prixResMaison" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.prixResMaison.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.prixResMaison.errors.required">Reservation price required</div>
+                                <div *ngIf="addHouseControls.prixResMaison.errors.pattern">Reservation price only have digits</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                             
+                              <input class="form-control" type="text" formControlName="adresseMaison"placeholder="Adress" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.adresseMaison.errors }" ngDefaultControl [(ngModel)]="addFormHouse.adresseMaison" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.adresseMaison.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.adresseMaison.errors.required">Adress required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="nbrChambre" placeholder="Number of rooms" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.nbrChambre.errors }"ngDefaultControl [(ngModel)]="addFormHouse.nbrChambre" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.nbrChambre.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.nbrChambre.errors.required">number of rooms required</div>
+                                <div *ngIf="addHouseControls.nbrChambre.errors.pattern">number of rooms only have digits</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="SalleDeBain" placeholder="Number of bathrooms" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.SalleDeBain.errors }"ngDefaultControl [(ngModel)]="addFormHouse.SalleDeBain" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.SalleDeBain.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.SalleDeBain.errors.required">number of bathrooms required</div>
+                                <div *ngIf="addHouseControls.SalleDeBain.errors.pattern">number of bathrooms only have digits</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="capaciteTotale" placeholder="Capacity" [ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.capaciteTotale.errors }"ngDefaultControl [(ngModel)]="addFormHouse.capaciteTotale" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddHouse && addHouseControls.capaciteTotale.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.capaciteTotale.errors.required">Capacity required</div>
+                                <div *ngIf="addHouseControls.capaciteTotale.errors.pattern">Capacity only have digits</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col mb-3">
+                            <div class="form-group">
+                              
+                              <textarea class="form-control" rows="10" formControlName="descreptionMaison" placeholder="Description"[ngClass]="{ 'is-invalid': submittedAddHouse && addHouseControls.descreptionMaison.errors }" 
+                              ngDefaultControl [(ngModel)]="addFormHouse.descreptionMaison" [ngModelOptions]="{standalone: true}"></textarea>
+
+                              <div *ngIf="submittedAddHouse && addHouseControls.descreptionMaison.errors" class="invalid-feedback">
+                                <div *ngIf="addHouseControls.descreptionMaison.errors.required">Description required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="float: right">
+                        <button *ngIf="next==false" (click)="goNext()"><i class=" fas fa-chevron-circle-right fa-2x"></i></button>
+                        <!-- <button  *ngIf="next==true"(click)="goPrev()"><i class="fas fa-chevron-circle-left fa-2x"></i></button> -->
+                      </div>
+                  </form>
+                  <h2 *ngIf="next==true">Add pictures</h2>
+                    <div class="row" *ngIf="next==true">
+                        
+                      <div >
+                        
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <br>
+                            <label class="form-label">You must add at least one picture</label>
+                            <input type="file"
+                                   class="form-control"
+                                   (change)="selectFiles($event)"
+                                   multiple accept="image/*" />
+                          </div>
+                        </div>
+                        <div class="flexStyle">
+                          <div class="col-md-2 productAddfromImages " *ngFor='let url of imageurls; let i = index'>
+                            <button (click)="removeImage(i)"><i class="far fa-times-circle"></i></button>
+                            <img class="img-fluid imgAddAct" [src]="url.base64String">
+                            
+                          </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="next==true">
+                      <div class="col d-flex justify-content-end">
+                        <div *ngIf="save==false">
+                          <button class="button" type="submit"(click)="getCurrentHouse()">Save</button>
+                        </div>
+                        
+                        <div *ngIf="save==true">
+                            <button class="button" type="submit"[disabled]="!selectedFiles"
+                            (click)="uploadFiles()">Confirm</button>
+                            <button class="button cancelbtn" type="submit">Cancel</button>
+                        </div>
+                       
+                      </div>
+                    </div>
+                  
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>

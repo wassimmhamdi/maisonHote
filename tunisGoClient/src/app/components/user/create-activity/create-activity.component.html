@@ -1,0 +1,153 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container">
+<div class="row flex-lg-nowrap">
+  
+
+  <div class="col">
+    <div class="row">
+      <div class="col mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="e-profile">
+              <div class="tab-content pt-3">
+                <div class="tab-pane active">
+                    <h2 *ngIf="next==false">Add Activity</h2>
+                  <form class="form" [formGroup]="addFormActivity" >
+                    <div class="row" *ngIf="next==false">
+                        
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text"formControlName="name" name="name" placeholder="Titre" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.name.errors }"ngDefaultControl [(ngModel)]="addFormActivity.name" [ngModelOptions]="{standalone: true}">
+                              <div *ngIf="submittedAddAct && addActivityControls.name.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.name.errors.required"> Titre required</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text"formControlName="region" placeholder="Region" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.region.errors }" ngDefaultControl [(ngModel)]="addFormActivity.region" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddAct && addActivityControls.region.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.region.errors.required">region required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="prix" placeholder="Prix" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.prix.errors }"ngDefaultControl [(ngModel)]="addFormActivity.prix" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddAct && addActivityControls.prix.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.prix.errors.required">prix required</div>
+                                <div *ngIf="addActivityControls.prix.errors.pattern">prix contains digits only</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="type"placeholder="Type" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.type.errors }" ngDefaultControl [(ngModel)]="addFormActivity.type" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddAct && addActivityControls.type.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.type.errors.required">type required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="min_participants" placeholder="min participants" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.min_participants.errors }"ngDefaultControl [(ngModel)]="addFormActivity.min_participants" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddAct && addActivityControls.min_participants.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.min_participants.errors.required">min participants required</div>
+                                <div *ngIf="addActivityControls.min_participants.errors.pattern">min participants contains digits only</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              
+                              <input class="form-control" type="text" formControlName="max_participants" placeholder="max participants" [ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.max_articipants.errors }"ngDefaultControl [(ngModel)]="addFormActivity.max_participants" [ngModelOptions]="{standalone: true}"/>
+                              <div *ngIf="submittedAddAct && addActivityControls.max_participants.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.max_participants.errors.required">max participants required</div>
+                                <div *ngIf="addActivityControls.max_participants.errors.pattern">max participants contains digits only</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col mb-3">
+                            <div class="form-group">
+                              
+                              <textarea class="form-control" rows="10" formControlName="description" placeholder="Description"[ngClass]="{ 'is-invalid': submittedAddAct && addActivityControls.description.errors }" 
+                              ngDefaultControl [(ngModel)]="addFormActivity.description" [ngModelOptions]="{standalone: true}"></textarea>
+
+                              <div *ngIf="submittedAddAct && addActivityControls.description.errors" class="invalid-feedback">
+                                <div *ngIf="addActivityControls.description.errors.required">Description required</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="float: right">
+                        <button *ngIf="next==false" (click)="goNext()"><i class=" fas fa-chevron-circle-right fa-2x"></i></button>
+                        <!-- <button  *ngIf="next==true"(click)="goPrev()"><i class="fas fa-chevron-circle-left fa-2x"></i></button> -->
+                      </div>
+                  </form>
+                  <h2 *ngIf="next==true">Add images</h2>
+                    <div class="row" *ngIf="next==true">
+                        
+                      <div >
+                        
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <br>
+                            <label class="form-label">You must add at least one picture</label>
+                            <input type="file"
+                                   class="form-control"
+                                   (change)="selectFiles($event)"
+                                   multiple accept="image/*" />
+                          </div>
+                        </div>
+                        <div class="flexStyle">
+                          <div class="col-md-2 productAddfromImages " *ngFor='let url of imageurls; let i = index'>
+                            <button (click)="removeImage(i)"><i class="far fa-times-circle"></i></button>
+                            <img class="img-fluid imgAddAct" [src]="url.base64String">
+                            
+                          </div>
+                        </div>
+                    </div>
+                    <div  *ngIf="next==true">
+                      <div class="col d-flex justify-content-end">
+                        <div *ngIf="save==false">
+                          <button class="button" type="submit"(click)="getCurrentAct()">Eregistrer</button>
+                        </div>
+                        
+                        <div *ngIf="save==true">
+                            <button class="button" type="submit"[disabled]="!selectedFiles"
+                            (click)="uploadFiles()">Confirmer</button>
+                            
+                        </div>
+                       
+                      </div>
+                    </div>
+                  
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
